@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Post Create
+{% endblock %}
+
+{% block body %}
+
+<center>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 style="text-align: center; padding: 50px;"> Post Create Form </h1>
+        Enter ur title<input type="text" name="title" placeholder="title" style="display: block; margin: 10px;" required>
+        Enter ur body<input type="text"  name="body" placeholder="body" style="display: block; margin: 10px;" required>
+        <input type="file" name="image"/><br><br>
+        Enter ur category<select name="category" value="--select--">
+            {% for c in category %}
+                <option value="{{c.id}}">{{c.name}}</option>
+            {% endfor %}
+        </select>
+        Enter ur create<input type="datetime-local" name="date" placeholder="date" style="display: block; margin: 10px;" required>
+        
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    </center>
+
+{% endblock %}

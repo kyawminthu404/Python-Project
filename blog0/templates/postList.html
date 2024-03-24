@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% block title %} Post List {% endblock %} 
+
+{% block body %}
+  <div class="container">
+    {% if messages %} 
+    {% for message in messages %}
+    <div
+      class="alert {{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      {{ message }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        arialabel="Close"
+      ></button>
+    </div>
+    {% endfor %} 
+    {% endif %} 
+    {% if posts %} 
+    {% for i in posts %}
+    <div class="card text-center mb-3" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{i.title}}</h5>
+        <p class="card-text">{{i.content}}</p>
+        {% if i.image %}      
+        <img src="/media/{{i.image}}" style="height: 100px;"/>
+        {% endif %}
+        <p class="card-text">By {{i.author}}</p>
+        <p class="card-text">By {{i.category.name}}</p>
+        <p>{{i.created_at}}</p>
+        <a href="/post/detail/{{i.id}}/" class="btn btn-primary">Detail</a>
+
+      </div>
+    </div>
+    {% endfor %} 
+    {% endif %} 
+  </div>
+
+
+{% endblock %}

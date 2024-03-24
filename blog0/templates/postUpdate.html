@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Post Update
+{% endblock %}
+
+{% block body %}
+<center>
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3> Post Create Form </h3>
+      Enter ur title <input type="text" value="{{posts.title}}" name="title" placeholder="title" style="margin: 5px;" required><br>
+      Enter ur body <input type="text"  value="{{posts.content}}" name="body" placeholder="body" style="margin: 2px;" required><br>
+      {% if posts.image %}
+        <a href="{{posts.image.url}}">{{posts.image}}</a>
+      {% endif %}
+      <input type="file" value="{{posts.image}}" name="image"/><br>
+      Enter ur category<select name="category">
+        {% for c in category %}
+            <option {% if posts.category_id == c.id %}selected {% endif %} value="{{c.id}}">{{c.name}}</option>
+        {% endfor %}
+    </select>
+      <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</center>
+{% endblock %}  

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Post Details
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Post Details</h1>
+    <div class="card text-center" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{posts.title}}</h5>
+          <p class="card-text">{{posts.content}}</p>
+          <img src="/media/{{posts.image}}" style="height: 100px;"/>
+          <p class="card-text">By {{posts.author}}</p>
+          <p class="card-text">By {{posts.category.name}}</p>
+          <p>{{posts.created_at}}</p>
+          <a href="/post/update/{{posts.id}}/" class="btn btn-primary">Update</a>
+          <a href="/post/delete/{{posts.id}}/" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
